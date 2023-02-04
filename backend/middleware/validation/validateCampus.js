@@ -3,7 +3,7 @@ const Joi = require('joi');
 campusValidation = Joi.object({
   name: Joi.string().required(),
   location: Joi.string().required(),
-  description: Joi.string().required(),
+  description: Joi.string(),
 });
 
 const validateCampus = (req, res, next) => {
