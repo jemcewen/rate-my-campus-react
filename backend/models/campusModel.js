@@ -5,12 +5,12 @@ const campusSchema = new Schema(
   {
     name: {
       type: String,
-      unique: [true, 'A campus with this name already exists'],
-      required: [true, 'Campus name is required'],
+      required: true,
+      unique: true,
     },
     location: {
       type: String,
-      required: [true, 'Campus location is required'],
+      required: true,
     },
     description: {
       type: String,
