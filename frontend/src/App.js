@@ -1,6 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { Toaster } from 'react-hot-toast';
-import Header from './components/Header';
+import Nav from './components/Nav';
 import Campuses from './pages/Campuses';
 import Register from './pages/Register';
 import Login from './pages/Login';
@@ -10,7 +10,7 @@ const App = () => {
     <>
       <Toaster />
       <Router>
-        <Header />
+        <Nav />
         <Routes>
           <Route path='/' element={<Campuses />} />
           <Route path='/register' element={<Register />} />
