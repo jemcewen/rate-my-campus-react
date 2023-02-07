@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import toast from 'react-hot-toast';
 import { FaSignInAlt } from 'react-icons/fa';
+import toast from 'react-hot-toast';
 import { login, reset } from '../features/auth/authSlice';
 import Spinner from '../components/Spinner';
 
@@ -27,8 +27,8 @@ const Login = () => {
     }
     // Redirect when logged in
     if (isSuccess && user) {
-      // toast.success(`Welcome back ${user.name}`);
       navigate('/');
+      toast.success(`Welcome back ${user.name}`);
     }
 
     dispatch(reset());
@@ -51,17 +51,14 @@ const Login = () => {
     return <Spinner />;
   }
   return (
-    <>
-      <section>
-        <h1>
-          <FaSignInAlt /> Login
-        </h1>
-        <p>Please login</p>
-      </section>
-      <section>
-        <form onSubmit={handleSubmit}>
-          <div>
-            <label htmlFor='email'>Email</label>
+    <div className='container max-w-sm'>
+      <div className='bg-white shadow-md rounded p-8 flex flex-col gap-8'>
+        <h1 className='text-3xl font-semibold text-center'>Login</h1>
+        <form onSubmit={handleSubmit} className='flex flex-col gap-8'>
+          <div className='flex flex-col gap-2'>
+            <label htmlFor='email' className='text-gray-700 text-sm font-bold'>
+              Email
+            </label>
             <input
               type='email'
               name='email'
@@ -69,10 +66,16 @@ const Login = () => {
               placeholder='Please enter your email'
               value={email}
               onChange={handleChange}
+              className='shadow border rounded w-full py-2 px-3 text-gray-700 focus:outline-none'
             />
           </div>
-          <div>
-            <label htmlFor='password'>Password</label>
+          <div className='flex flex-col gap-2'>
+            <label
+              htmlFor='password'
+              className='text-gray-700 text-sm font-bold'
+            >
+              Password
+            </label>
             <input
               type='password'
               name='password'
@@ -80,14 +83,20 @@ const Login = () => {
               placeholder='Please enter your password'
               value={password}
               onChange={handleChange}
+              className='shadow border rounded w-full py-2 px-3 text-gray-700 focus:outline-none'
             />
           </div>
-          <div>
-            <button type='submit'>Submit</button>
+          <div className='flex justify-center'>
+            <button
+              type='submit'
+              className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline'
+            >
+              Login
+            </button>
           </div>
         </form>
-      </section>
-    </>
+      </div>
+    </div>
   );
 };
 export default Login;

@@ -2,7 +2,6 @@ import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import toast from 'react-hot-toast';
-import { FaUser } from 'react-icons/fa';
 import { register, reset } from '../features/auth/authSlice';
 import Spinner from '../components/Spinner';
 
@@ -52,17 +51,14 @@ const Register = () => {
   }
 
   return (
-    <>
-      <section>
-        <h1>
-          <FaUser /> Register
-        </h1>
-        <p>Please create an account</p>
-      </section>
-      <section>
-        <form onSubmit={handleSubmit}>
-          <div>
-            <label htmlFor='name'>Name</label>
+    <div className='container max-w-sm'>
+      <div className='bg-white shadow-md rounded p-8 flex flex-col gap-8'>
+        <h1 className='text-3xl font-semibold text-center'>Register</h1>
+        <form onSubmit={handleSubmit} className='flex flex-col gap-8'>
+          <div className='flex flex-col gap-2'>
+            <label htmlFor='name' className='text-gray-700 text-sm font-bold'>
+              Name
+            </label>
             <input
               type='text'
               name='name'
@@ -70,10 +66,13 @@ const Register = () => {
               placeholder='What should we call you?'
               value={name}
               onChange={handleChange}
+              className='shadow border rounded w-full py-2 px-3 text-gray-700 focus:outline-none'
             />
           </div>
-          <div>
-            <label htmlFor='email'>Email</label>
+          <div className='flex flex-col gap-3'>
+            <label htmlFor='email' className='text-gray-700 text-sm font-bold'>
+              Email
+            </label>
             <input
               type='email'
               name='email'
@@ -81,10 +80,16 @@ const Register = () => {
               placeholder='Please enter your email'
               value={email}
               onChange={handleChange}
+              className='shadow border rounded w-full py-2 px-3 text-gray-700 focus:outline-none'
             />
           </div>
-          <div>
-            <label htmlFor='password'>Password</label>
+          <div className='flex flex-col gap-2'>
+            <label
+              htmlFor='password'
+              className='text-gray-700 text-sm font-bold'
+            >
+              Password
+            </label>
             <input
               type='password'
               name='password'
@@ -92,14 +97,20 @@ const Register = () => {
               placeholder='Please enter your password'
               value={password}
               onChange={handleChange}
+              className='shadow border rounded w-full py-2 px-3 text-gray-700 focus:outline-none'
             />
           </div>
-          <div>
-            <button type='submit'>Submit</button>
+          <div className='flex justify-center'>
+            <button
+              type='submit'
+              className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline'
+            >
+              Register
+            </button>
           </div>
         </form>
-      </section>
-    </>
+      </div>
+    </div>
   );
 };
 export default Register;
