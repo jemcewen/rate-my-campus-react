@@ -9,6 +9,24 @@ const initialState = {
   message: '',
 };
 
+// Get campuses
+export const getCampuses = createAsyncThunk(
+  'campuses/getAll',
+  async (_, thunkAPI) => {
+    try {
+      return await campusService.getCampuses();
+    } catch (error) {
+      const message =
+        (error.response &&
+          error.response.data &&
+          error.response.data.message) ||
+        error.message ||
+        error.toString();
+      return thunkAPI.rejectWithValue(message);
+    }
+  }
+);
+
 // Create new campus
 export const createCampus = createAsyncThunk(
   'campuses/create',
@@ -50,6 +68,19 @@ export const campusSlice = createSlice({
         state.campuses.push(action.payload);
       })
       .addCase(createCampus.rejected, (state, action) => {
+        state.isLoading = false;
+        state.isError = true;
+        state.message = action.payload;
+      })
+      .addCase(getCampuses.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(getCampuses.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.isSuccess = true;
+        state.campuses = action.payload;
+      })
+      .addCase(getCampuses.rejected, (state, action) => {
         state.isLoading = false;
         state.isError = true;
         state.message = action.payload;

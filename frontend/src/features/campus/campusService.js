@@ -1,5 +1,11 @@
 import axios from 'axios';
 
+// Get campuses
+const getCampuses = async () => {
+  const response = await axios.get('/api/campuses');
+  return response.data;
+};
+
 // Create new campus
 const createCampus = async (campusData, token) => {
   const config = {
@@ -12,6 +18,7 @@ const createCampus = async (campusData, token) => {
 };
 
 const campusService = {
+  getCampuses,
   createCampus,
 };
 
