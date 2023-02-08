@@ -23,7 +23,7 @@ const updateCampus = asyncHandler(async (req, res) => {
 
   if (campus.user.toString !== req.user._id) {
     res.status(401);
-    throw new Error('User not authorized - not your campus');
+    throw new Error('User not authorized to update this campus');
   }
 
   const updatedCampus = await Campus.findByIdAndUpdate(
@@ -45,7 +45,7 @@ const deleteCampus = asyncHandler(async (req, res) => {
 
   if (campus.user.toString() !== req.user._id.toString()) {
     res.status(401);
-    throw new Error('User not authorized');
+    throw new Error('User not authorized to delete this campus');
   }
 
   const deletedCampus = await campus.remove();
