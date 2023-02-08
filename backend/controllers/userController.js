@@ -59,8 +59,7 @@ const logoutUser = asyncHandler(async (req, res) => {});
 
 const getUser = asyncHandler(async (req, res) => {
   // Get the user data that was set in the protect middleware
-  const { _id, name, email } = req.user;
-  res.status(200).json({ _id: _id, name, email });
+  res.status(200).json(req.user);
 });
 
 // Generate JWT
