@@ -15,7 +15,7 @@ const NewCampus = () => {
   }, []);
 
   return (
-    <div className='container max-w-sm'>
+    <div className='container max-w-md'>
       <div className='flex flex-col gap-8'>
         <h1 className='text-3xl font-semibold'>Add Campus</h1>
         <CampusForm />

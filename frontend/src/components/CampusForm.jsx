@@ -76,7 +76,7 @@ const CampusForm = () => {
           className='shadow border rounded w-full py-2 px-3 text-gray-700 focus:outline-none resize-none'
         />
       </div>
-      <div className='flex justify-start'>
+      <div className='flex justify-end'>
         <button
           type='submit'
           className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline'
