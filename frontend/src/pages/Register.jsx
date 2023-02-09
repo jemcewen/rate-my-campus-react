@@ -27,6 +27,7 @@ const Register = () => {
     }
     // Redirect when logged in
     if (isSuccess && user) {
+      toast.success(`Welcome, ${user.name}!`);
       navigate('/');
     }
 
