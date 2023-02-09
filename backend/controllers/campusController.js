@@ -9,7 +9,12 @@ const getCampuses = asyncHandler(async (req, res) => {
 });
 
 const createCampus = asyncHandler(async (req, res) => {
-  const campus = await Campus.create({ ...req.body, user: req.user._id });
+  const campus = new Campus({ ...req.body, user: req.user._id });
+  campus.images = req.files.map((f) => ({
+    path: f.path,
+    filename: f.filename,
+  }));
+  await campus.save();
   res.status(200).json(campus);
 });
 

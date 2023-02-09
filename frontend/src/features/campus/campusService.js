@@ -11,6 +11,7 @@ const createCampus = async (campusData, token) => {
   const config = {
     headers: {
       Authorization: `Bearer ${token}`,
+      'Content-Type': 'multipart/form-data',
     },
   };
   const response = await axios.post('/api/campuses', campusData, config);

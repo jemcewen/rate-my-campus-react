@@ -1,6 +1,15 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
+const ImageSchema = new Schema({
+  path: String,
+  filename: String,
+});
+
+// ImageSchema.virtual('cardImage').get(function () {
+//   return this.url.replace('/upload', '/upload/ar_4:3,c_crop');
+// });
+
 const campusSchema = new Schema(
   {
     user: {
@@ -20,6 +29,7 @@ const campusSchema = new Schema(
     description: {
       type: String,
     },
+    images: [ImageSchema],
   },
   {
     timestamps: true,
