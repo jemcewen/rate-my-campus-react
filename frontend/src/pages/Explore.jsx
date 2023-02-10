@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import Spinner from '../components/Spinner';
+import CampusCard from '../components/CampusCard';
 import { getCampuses, reset } from '../features/campus/campusSlice';
 
 const Explore = () => {
@@ -28,10 +29,11 @@ const Explore = () => {
   }
   return (
     <div className='container'>
-      <h1 className='text-3xl font-semibold'>Explore</h1>
-      {campuses.map((campus) => (
-        <p>{campus.name}</p>
-      ))}
+      <div className='grid grid-cols-1 gap-8 xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2'>
+        {campuses.map((campus) => (
+          <CampusCard campus={campus} key={campus._id} />
+        ))}
+      </div>
     </div>
   );
 };
