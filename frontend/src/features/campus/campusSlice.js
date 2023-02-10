@@ -62,10 +62,9 @@ export const campusSlice = createSlice({
       .addCase(createCampus.pending, (state) => {
         state.isLoading = true;
       })
-      .addCase(createCampus.fulfilled, (state, action) => {
+      .addCase(createCampus.fulfilled, (state) => {
         state.isLoading = false;
         state.isSuccess = true;
-        state.campuses.push(action.payload);
       })
       .addCase(createCampus.rejected, (state, action) => {
         state.isLoading = false;
