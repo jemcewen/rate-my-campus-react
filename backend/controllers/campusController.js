@@ -9,6 +9,13 @@ const getCampuses = asyncHandler(async (req, res) => {
 });
 
 const createCampus = asyncHandler(async (req, res) => {
+  // Check if campus exists
+  const campusExists = await Campus.findOne({ name: req.body.name });
+  if (campusExists) {
+    res.status(400);
+    throw new Error('Campus already exists');
+  }
+
   const campus = new Campus({ ...req.body, user: req.user._id });
   campus.images = req.files.map((f) => ({
     path: f.path,
