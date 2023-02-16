@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import Spinner from '../components/Spinner';
 import CampusCard from '../components/CampusCard';
-import { getCampuses, reset } from '../features/campus/campusSlice';
+import { getCampuses, reset } from '../features/campuses/campusesSlice';
 
 const Explore = () => {
   const dispatch = useDispatch();
@@ -14,7 +14,6 @@ const Explore = () => {
   useEffect(() => {
     dispatch(getCampuses());
 
-    // Is this necessary? >>>
     return () => {
       dispatch(reset());
     };

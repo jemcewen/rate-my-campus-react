@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { createCampus, reset } from '../features/campus/campusSlice';
+import { createCampus, reset } from '../features/campuses/campusesSlice';
 import toast from 'react-hot-toast';
 import Spinner from '../components/Spinner';
 
@@ -34,8 +34,9 @@ const CampusForm = () => {
       toast.success(`${name} added!`);
       navigate('/');
     }
-
-    dispatch(reset());
+    return () => {
+      dispatch(reset());
+    };
   }, [isError, isSuccess, message]);
 
   const handleChange = (e) => {
