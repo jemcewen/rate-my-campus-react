@@ -33,14 +33,7 @@ const campusSchema = new Schema(
       type: String,
     },
     images: [ImageSchema],
-    reviews: [
-      {
-        type: Schema.Types.ObjectId,
-        ref: 'Review',
-      },
-    ],
   },
-
   {
     timestamps: true,
   }
