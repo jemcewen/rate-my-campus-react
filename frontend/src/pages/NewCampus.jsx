@@ -25,6 +25,7 @@ const CampusForm = () => {
 
   useEffect(() => {
     if (!user) {
+      toast.error('Please login to submit a campus');
       navigate('/login');
     }
     if (isError) {
@@ -152,8 +153,7 @@ const CampusForm = () => {
                     ></path>
                   </svg>
                   <p className='mb-2 text-sm text-gray-500 dark:text-gray-400'>
-                    <span className='font-semibold'>Click to upload</span> or
-                    drag and drop
+                    <span className='font-semibold'>Click to upload</span>
                   </p>
                   <p className='text-xs text-gray-500 dark:text-gray-400'>
                     Maximum 6 images
