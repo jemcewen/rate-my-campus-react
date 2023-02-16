@@ -2,38 +2,19 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import campusService from './campusService';
 
 const initialState = {
-  campuses: [],
+  campus: {},
   isLoading: false,
   isError: false,
   isSuccess: false,
   message: '',
 };
 
-// Get campuses
-export const getCampuses = createAsyncThunk(
-  'campuses/getAll',
-  async (_, thunkAPI) => {
+// Get campus
+export const getCampus = createAsyncThunk(
+  'campus/get',
+  async (id, thunkAPI) => {
     try {
-      return await campusService.getCampuses();
-    } catch (error) {
-      const message =
-        (error.response &&
-          error.response.data &&
-          error.response.data.message) ||
-        error.message ||
-        error.toString();
-      return thunkAPI.rejectWithValue(message);
-    }
-  }
-);
-
-// Create new campus
-export const createCampus = createAsyncThunk(
-  'campuses/create',
-  async (campusData, thunkAPI) => {
-    try {
-      const token = thunkAPI.getState().auth.user.token;
-      return await campusService.createCampus(campusData, token);
+      return await campusService.getCampus(id);
     } catch (error) {
       const message =
         (error.response &&
@@ -51,6 +32,7 @@ export const campusSlice = createSlice({
   initialState,
   reducers: {
     reset: (state) => {
+      state.campus = {};
       state.isLoading = false;
       state.isError = false;
       state.isSuccess = false;
@@ -59,27 +41,15 @@ export const campusSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
-      .addCase(createCampus.pending, (state) => {
+      .addCase(getCampus.pending, (state) => {
         state.isLoading = true;
       })
-      .addCase(createCampus.fulfilled, (state) => {
+      .addCase(getCampus.fulfilled, (state, action) => {
         state.isLoading = false;
         state.isSuccess = true;
+        state.campus = action.payload;
       })
-      .addCase(createCampus.rejected, (state, action) => {
-        state.isLoading = false;
-        state.isError = true;
-        state.message = action.payload;
-      })
-      .addCase(getCampuses.pending, (state) => {
-        state.isLoading = true;
-      })
-      .addCase(getCampuses.fulfilled, (state, action) => {
-        state.isLoading = false;
-        state.isSuccess = true;
-        state.campuses = action.payload;
-      })
-      .addCase(getCampuses.rejected, (state, action) => {
+      .addCase(getCampus.rejected, (state, action) => {
         state.isLoading = false;
         state.isError = true;
         state.message = action.payload;
