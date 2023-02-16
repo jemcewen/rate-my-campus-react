@@ -28,7 +28,7 @@ const ImageSlider = ({ images }) => {
 
   if (images)
     return (
-      <div className='h-[780px] w-full m-auto relative group'>
+      <div className='h-[300px] sm:h-[500px] w-full m-auto relative group'>
         <div
           style={{
             backgroundImage: `url(${images[currentIndex].sliderImage})`,
