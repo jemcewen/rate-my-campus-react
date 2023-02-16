@@ -10,6 +10,7 @@ const ReviewForm = () => {
 
   const dispatch = useDispatch();
   const { isError, isSuccess, message } = useSelector((state) => state.review);
+  const user = useSelector((state) => state.auth.user);
 
   useEffect(() => {
     if (isError) {
@@ -24,8 +25,13 @@ const ReviewForm = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const reviewData = { rating, body };
-    dispatch(createReview(reviewData));
+
+    if (!user) {
+      toast.error('Please login to review a campus');
+    } else {
+      const reviewData = { rating, body };
+      dispatch(createReview(reviewData));
+    }
 
     setRating(0);
     setBody('');
