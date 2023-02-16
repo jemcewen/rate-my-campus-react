@@ -3,6 +3,10 @@ const Schema = mongoose.Schema;
 
 const reviewSchema = Schema(
   {
+    campus: {
+      type: Schema.Types.ObjectID,
+      ref: 'Campus',
+    },
     body: String,
     rating: Number,
     author: {
