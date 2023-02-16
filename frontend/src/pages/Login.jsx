@@ -52,7 +52,7 @@ const Login = () => {
   }
   return (
     <div className='container max-w-sm'>
-      <div className='bg-white shadow-md rounded p-8 flex flex-col gap-8'>
+      <div className='bg-white shadow-md rounded-2xl p-8 flex flex-col gap-8'>
         <h1 className='text-3xl font-semibold text-center'>Login</h1>
         <form onSubmit={handleSubmit} className='flex flex-col gap-8'>
           <div className='flex flex-col gap-2'>
