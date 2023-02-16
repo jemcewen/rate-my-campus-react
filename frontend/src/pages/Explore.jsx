@@ -12,17 +12,13 @@ const Explore = () => {
   );
 
   useEffect(() => {
-    if (isError) {
-      console.log(message);
-    }
-
     dispatch(getCampuses());
 
     // Is this necessary? >>>
     return () => {
       dispatch(reset());
     };
-  }, [isError, message, dispatch]);
+  }, []);
 
   if (isLoading) {
     return <Spinner />;
