@@ -11,11 +11,24 @@ const getReviews = asyncHandler(async (req, res) => {
 });
 
 const createReview = asyncHandler(async (req, res) => {
+  // Check if campus exists
   const campus = await Campus.findById(req.params.id);
   if (!campus) {
     res.status(400);
     throw new Error('Campus not found');
   }
+
+  // Check if user has already reviewed campus
+  const reviewExists = await Review.exists({
+    campus: req.params.id,
+    author: req.user._id,
+  });
+
+  if (reviewExists) {
+    res.status(400);
+    throw new Error('Campus already reviewed');
+  }
+
   const review = await new Review({ ...req.body });
   review.author = req.user._id;
   review.campus = campus.id;
