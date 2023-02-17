@@ -4,8 +4,7 @@ const Campus = require('../models/campusModel');
 
 const getReviews = asyncHandler(async (req, res) => {
   const reviews = await Review.find({ campus: req.params.id }).populate(
-    'author',
-    'name'
+    'author'
   );
   res.json(reviews);
 });
@@ -33,6 +32,7 @@ const createReview = asyncHandler(async (req, res) => {
   review.author = req.user._id;
   review.campus = campus.id;
   await review.save();
+  await review.populate('author');
   res.status(200).json(review);
 });
 
