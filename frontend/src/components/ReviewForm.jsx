@@ -11,12 +11,21 @@ const ReviewForm = () => {
   const dispatch = useDispatch();
 
   const user = useSelector((state) => state.auth.user);
+  const { reviewSubmit } = useSelector((state) => state.reviews);
+
+  useEffect(() => {
+    if (reviewSubmit) {
+      toast.success('Review added!');
+    }
+  }, [reviewSubmit]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
     if (!user) {
       toast.error('Please login to review a campus');
+    } else if (body.trim() == '') {
+      toast.error('Please enter a review');
     } else {
       const reviewData = { rating, body };
       dispatch(createReview(reviewData));
