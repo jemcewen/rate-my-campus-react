@@ -31,6 +31,7 @@ const campusSchema = new Schema(
     },
     description: {
       type: String,
+      required: true,
     },
     geometry: {
       type: {
@@ -43,7 +44,10 @@ const campusSchema = new Schema(
         required: true,
       },
     },
-    images: [ImageSchema],
+    images: {
+      type: [ImageSchema],
+      required: true,
+    },
   },
   {
     timestamps: true,
