@@ -9,6 +9,7 @@ import Spinner from '../components/Spinner';
 import ImageSlider from '../components/ImageSlider';
 import ReviewForm from '../components/ReviewForm';
 import ReviewList from '../components/ReviewList';
+import CampusMap from '../components/CampusMap';
 
 const Campus = () => {
   const params = useParams();
@@ -115,7 +116,17 @@ const Campus = () => {
               </div>
             </div>
           </div>
-          <ImageSlider images={campus.images} />
+          <div className='flex flex-wrap'>
+            <div className='w-full sm:w-1/2 sm:pr-4 '>
+              {campus.images.length > 0 && (
+                <ImageSlider images={campus.images} />
+              )}
+            </div>
+            <div className='w-full sm:w-1/2 sm:pl-4 pt-8 sm:pt-0'>
+              <CampusMap geometry={campus.geometry} />
+            </div>
+          </div>
+
           <ReviewList campus={params.campusId} />
           <ReviewForm />
         </div>
