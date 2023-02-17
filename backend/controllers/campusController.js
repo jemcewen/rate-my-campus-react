@@ -1,5 +1,9 @@
 const asyncHandler = require('express-async-handler');
+const mbxGeocoding = require('@mapbox/mapbox-sdk/services/geocoding');
 const Campus = require('../models/campusModel');
+
+const mbxToken = process.env.MAPBOX_TOKEN;
+const geocoder = mbxGeocoding({ accessToken: mbxToken });
 
 const getCampuses = asyncHandler(async (req, res) => {
   const campuses = await Campus.find({});
@@ -24,6 +28,16 @@ const createCampus = asyncHandler(async (req, res) => {
   }
 
   const campus = new Campus({ ...req.body, user: req.user._id });
+
+  // Get GeoJSON
+  const geoData = await geocoder
+    .forwardGeocode({
+      query: `${req.body.name}, ${req.body.location}`,
+      limit: 1,
+    })
+    .send();
+  campus.geometry = geoData.body.features[0].geometry;
+
   campus.images = req.files.map((f) => ({
     path: f.path,
     filename: f.filename,
