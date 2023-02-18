@@ -60,12 +60,12 @@ const Campus = () => {
       <div className='container'>
         <div className='flex flex-col gap-8'>
           <div className='flex flex-col gap-2 sm:gap-5'>
-            <div className='hidden sm:block pt-5 text-gray-300 uppercase tracking-wide '>
+            <div className='hidden sm:block pt-5 text-gray-400 uppercase tracking-wide '>
               <Link to='/' className='flex gap-1 items-center w-fit'>
                 <FaArrowLeft /> Back to all campuses
               </Link>
             </div>
-            <h1 className='my-2 sm:mt-8 sm:mb-6 text-4xl md:text-6xl xl:text-7xl font-medium leading-tight'>
+            <h1 className='my-3 sm:my-8 text-4xl md:text-6xl xl:text-7xl font-medium leading-tight'>
               {campus.name}
             </h1>
             <div className='flex flex-wrap gap-8 sm:gap-0 '>
