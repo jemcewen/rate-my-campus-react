@@ -3,7 +3,7 @@ import ReactMapGL, { Marker } from 'react-map-gl';
 const CampusMap = ({ geometry }) => {
   const [lng, lat] = geometry.coordinates;
   return (
-    <div className='h-[300px] sm:h-[500px] rounded-2xl overflow-hidden'>
+    <div className='h-[300px] sm:h-[400px] rounded-2xl overflow-hidden'>
       <ReactMapGL
         initialViewState={{
           longitude: lng,
