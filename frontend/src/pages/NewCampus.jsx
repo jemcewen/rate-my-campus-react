@@ -77,7 +77,7 @@ const CampusForm = () => {
   }
   return (
     <div className='container max-w-md'>
-      <div className='flex flex-col gap-8'>
+      <div className='flex flex-col gap-8 mt-4'>
         <h1 className='text-3xl font-semibold'>Add Campus</h1>
         <form onSubmit={handleSubmit} className='flex flex-col gap-8'>
           <div className='flex flex-col gap-2'>
