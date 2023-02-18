@@ -1,5 +1,5 @@
 import { Link, useParams } from 'react-router-dom';
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { getCampus, reset } from '../features/campus/campusSlice';
@@ -27,6 +27,14 @@ const Campus = () => {
     const average = sum / reviews.length;
     // Round the average to one decimal place
     return Math.round(average * 10) / 10;
+  };
+
+  const reviewsRef = useRef(null);
+
+  const handleClick = () => {
+    reviewsRef.current.scrollIntoView({
+      behavior: 'smooth',
+    });
   };
 
   useEffect(() => {
@@ -60,8 +68,8 @@ const Campus = () => {
             <h1 className='my-2 sm:mt-8 sm:mb-6 text-4xl md:text-6xl xl:text-7xl font-medium leading-tight'>
               {campus.name}
             </h1>
-            <div className='flex flex-wrap'>
-              <div className='w-full mb-4 sm:w-3/4 sm:pr-8 order-2 sm:order-1 hidden sm:inline-block'>
+            <div className='flex flex-wrap gap-8 sm:gap-0 '>
+              <div className='w-full sm:mb-4 sm:w-3/4 sm:pr-8 order-2 sm:order-1  '>
                 <div className='shadow-lg rounded-2xl overflow-hidden bg-white h-full'>
                   <div className='py-6 px-4 h-full flex flex-col gap-4 justify-evenly'>
                     <p className='text-lg text-gray-500 font-medium '>
@@ -71,10 +79,12 @@ const Campus = () => {
                     {campus.description && (
                       <p className='leading-loose'>{campus.description}</p>
                     )}
-
-                    <p className='font-medium text-blue-500'>
-                      Link to something here
-                    </p>
+                    <button
+                      className='font-medium text-blue-500 text-left'
+                      onClick={handleClick}
+                    >
+                      Check out the reviews!
+                    </button>
                   </div>
                 </div>
               </div>
@@ -116,7 +126,7 @@ const Campus = () => {
               </div>
             </div>
           </div>
-          <div className='flex flex-wrap'>
+          <div className='flex flex-wrap gap-2 sm:gap-0'>
             <div className='w-full sm:w-1/2 sm:pr-4 '>
               {campus.images.length > 0 && (
                 <ImageSlider images={campus.images} />
@@ -126,9 +136,12 @@ const Campus = () => {
               <CampusMap geometry={campus.geometry} />
             </div>
           </div>
-
-          <ReviewList campus={params.campusId} />
-          <ReviewForm />
+          <div ref={reviewsRef}>
+            <ReviewList campus={params.campusId} />
+          </div>
+          <div className='sm:w-1/2 sm:pr-4'>
+            <ReviewForm />
+          </div>
         </div>
       </div>
     );
