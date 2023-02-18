@@ -7,8 +7,8 @@ const reviewSchema = Schema(
       type: Schema.Types.ObjectID,
       ref: 'Campus',
     },
-    body: String,
-    rating: Number,
+    body: { type: String, required: true },
+    rating: { type: Number, required: true },
     author: {
       type: Schema.Types.ObjectID,
       ref: 'User',
