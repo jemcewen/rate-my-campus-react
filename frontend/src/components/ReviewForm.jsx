@@ -35,7 +35,7 @@ const ReviewForm = () => {
   };
 
   return (
-    <div className='max-w-md'>
+    <div className='w-full'>
       <div className='flex flex-col gap-8'>
         <h2 className='text-3xl font-semibold'>Leave a Review</h2>
         <form onSubmit={handleSubmit} className='flex flex-col gap-8'>
@@ -58,15 +58,15 @@ const ReviewForm = () => {
               name='review'
               id='review'
               placeholder='Please enter your review'
-              rows='4'
+              rows='6'
               cols='1'
               wrap='hard'
-              className='shadow border rounded w-full py-2 px-3 text-gray-700 focus:outline-none resize-none'
+              className='shadow border rounded-2xl w-full py-3 px-4 text-gray-700 focus:outline-none resize-none'
               value={body}
               onChange={(e) => setBody(e.target.value)}
             />
           </div>
-          <div className='flex justify-end'>
+          <div className='flex'>
             <button
               type='submit'
               className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline'
