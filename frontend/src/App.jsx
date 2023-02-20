@@ -9,19 +9,17 @@ import Campus from './pages/Campus';
 
 const App = () => {
   return (
-    <div>
+    <div className='bg-gray-50 min-h-screen'>
       <Toaster />
       <Router>
         <Nav />
-        <div className='min-h-[calc(100vh-80px)] pb-20 bg-gray-100 flex justify-center items-center'>
-          <Routes>
-            <Route path='/' element={<Explore />} />
-            <Route path='/register' element={<Register />} />
-            <Route path='/login' element={<Login />} />
-            <Route path='/campuses/:campusId' element={<Campus />} />
-            <Route path='/campuses/new' element={<NewCampus />} />
-          </Routes>
-        </div>
+        <Routes>
+          <Route path='/' element={<Explore />} />
+          <Route path='/register' element={<Register />} />
+          <Route path='/login' element={<Login />} />
+          <Route path='/campuses/:campusId' element={<Campus />} />
+          <Route path='/campuses/new' element={<NewCampus />} />
+        </Routes>
       </Router>
     </div>
   );
