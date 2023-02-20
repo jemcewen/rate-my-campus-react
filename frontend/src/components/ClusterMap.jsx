@@ -1,5 +1,5 @@
 import Map, { Marker, Popup } from 'react-map-gl';
-import { FaMapMarkerAlt, FaExternalLinkAlt } from 'react-icons/fa';
+import { FaMapMarkerAlt } from 'react-icons/fa';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 
