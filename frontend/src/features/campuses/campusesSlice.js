@@ -7,6 +7,7 @@ const initialState = {
   isError: false,
   isSuccess: false,
   message: '',
+  campusSubmit: false,
 };
 
 // Get campuses
@@ -52,11 +53,11 @@ export const campusesSlice = createSlice({
   reducers: {
     reset: (state) => {
       state.campuses = [];
-      state.campus = {};
       state.isLoading = false;
       state.isError = false;
       state.isSuccess = false;
       state.message = '';
+      state.campusSubmit = false;
     },
   },
   extraReducers: (builder) => {
@@ -64,9 +65,9 @@ export const campusesSlice = createSlice({
       .addCase(createCampus.pending, (state) => {
         state.isLoading = true;
       })
-      .addCase(createCampus.fulfilled, (state) => {
+      .addCase(createCampus.fulfilled, (state, action) => {
         state.isLoading = false;
-        state.isSuccess = true;
+        state.campusSubmit = true;
       })
       .addCase(createCampus.rejected, (state, action) => {
         state.isLoading = false;
