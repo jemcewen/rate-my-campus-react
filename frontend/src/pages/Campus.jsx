@@ -128,8 +128,14 @@ const Campus = () => {
           </div>
           <div className='flex flex-wrap gap-2 sm:gap-0'>
             <div className='w-full sm:w-1/2 sm:pr-4 '>
-              {campus.images.length > 0 && (
+              {campus.images.length > 0 ? (
                 <ImageSlider images={campus.images} />
+              ) : (
+                <div className='hidden sm:flex justify-center items-center w-full h-full bg-gray-300 rounded-2xl'>
+                  <p className='text-3xl uppercase font-bold tracking-wider text-white'>
+                    No images
+                  </p>
+                </div>
               )}
             </div>
             <div className='w-full sm:w-1/2 sm:pl-4 pt-8 sm:pt-0'>
