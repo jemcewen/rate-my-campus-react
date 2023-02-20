@@ -57,7 +57,7 @@ const Campus = () => {
   }
   if (isSuccess) {
     return (
-      <div className='container'>
+      <div className='container pb-20'>
         <div className='flex flex-col gap-8'>
           <div className='flex flex-col gap-2 sm:gap-5'>
             <div className='hidden sm:block pt-5 text-gray-400 uppercase tracking-wide '>
