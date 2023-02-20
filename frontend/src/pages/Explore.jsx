@@ -4,6 +4,7 @@ import Spinner from '../components/Spinner';
 import CampusCard from '../components/CampusCard';
 import ClusterMap from '../components/ClusterMap';
 import { getCampuses, reset } from '../features/campuses/campusesSlice';
+import { Link } from 'react-router-dom';
 
 const Explore = () => {
   const dispatch = useDispatch();
@@ -27,11 +28,21 @@ const Explore = () => {
     <div className='flex flex-col gap-8 pb-20'>
       {campuses && <ClusterMap campuses={campuses} />}
       <div className='container'>
+        <h1 className='text-6xl pb-8'>Explore</h1>
         <div className='grid grid-cols-1 gap-8 xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2'>
           {campuses.map((campus) => (
             <CampusCard campus={campus} key={campus._id} />
           ))}
         </div>
+      </div>
+      <div className='mx-auto flex flex-col gap-4 items-center'>
+        <p className=''>Don't see the campus you're looking for?</p>
+        <Link
+          to='/campuses/new'
+          className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline'
+        >
+          Add it!
+        </Link>
       </div>
     </div>
   );
