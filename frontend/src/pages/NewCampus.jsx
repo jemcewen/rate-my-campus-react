@@ -19,7 +19,7 @@ const CampusForm = () => {
   const navigate = useNavigate();
 
   const user = useSelector((state) => state.auth.user);
-  const { isLoading, isError, isSuccess, message } = useSelector(
+  const { isLoading, isError, campusSubmit, message } = useSelector(
     (state) => state.campuses
   );
 
@@ -31,14 +31,14 @@ const CampusForm = () => {
     if (isError) {
       toast.error(message);
     }
-    if (isSuccess) {
+    if (campusSubmit) {
       toast.success(`${name} added!`);
       navigate('/');
     }
     return () => {
       dispatch(reset());
     };
-  }, [isError, isSuccess, message]);
+  }, [isError, campusSubmit, message]);
 
   const handleChange = (e) => {
     if (e.target.files) {
