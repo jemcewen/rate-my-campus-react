@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import Spinner from '../components/Spinner';
 import CampusCard from '../components/CampusCard';
+import ClusterMap from '../components/ClusterMap';
 import { getCampuses, reset } from '../features/campuses/campusesSlice';
 
 const Explore = () => {
@@ -23,11 +24,14 @@ const Explore = () => {
     return <Spinner />;
   }
   return (
-    <div className='container'>
-      <div className='grid grid-cols-1 gap-8 xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2'>
-        {campuses.map((campus) => (
-          <CampusCard campus={campus} key={campus._id} />
-        ))}
+    <div className='flex flex-col gap-8 pb-20'>
+      {campuses && <ClusterMap campuses={campuses} />}
+      <div className='container'>
+        <div className='grid grid-cols-1 gap-8 xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2'>
+          {campuses.map((campus) => (
+            <CampusCard campus={campus} key={campus._id} />
+          ))}
+        </div>
       </div>
     </div>
   );
