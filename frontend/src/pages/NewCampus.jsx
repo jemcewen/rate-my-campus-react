@@ -76,7 +76,7 @@ const CampusForm = () => {
     return <Spinner />;
   }
   return (
-    <div className='container max-w-md'>
+    <div className='container max-w-md flex flex-col pb-20 min-h-[calc(100vh-80px)] justify-center'>
       <div className='flex flex-col gap-8 mt-4'>
         <h1 className='text-3xl font-semibold'>Add Campus</h1>
         <form onSubmit={handleSubmit} className='flex flex-col gap-8'>

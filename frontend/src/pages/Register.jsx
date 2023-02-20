@@ -52,7 +52,7 @@ const Register = () => {
   }
 
   return (
-    <div className='container max-w-sm'>
+    <div className='container max-w-sm flex flex-col pb-20 min-h-[calc(100vh-80px)] justify-center'>
       <div className='bg-white shadow-md rounded-2xl p-8 flex flex-col gap-8'>
         <h1 className='text-3xl font-semibold text-center'>Register</h1>
         <form onSubmit={handleSubmit} className='flex flex-col gap-8'>
