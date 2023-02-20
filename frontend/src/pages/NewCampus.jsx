@@ -57,6 +57,11 @@ const CampusForm = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
+    if (!name || !location || !description) {
+      toast.error('Please enter all fields');
+      return;
+    }
+
     const campusData = new FormData();
 
     // Append body
