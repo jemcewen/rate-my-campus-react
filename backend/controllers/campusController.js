@@ -6,7 +6,7 @@ const mbxToken = process.env.MAPBOX_TOKEN;
 const geocoder = mbxGeocoding({ accessToken: mbxToken });
 
 const getCampuses = asyncHandler(async (req, res) => {
-  const campuses = await Campus.find({});
+  const campuses = await Campus.find({}).populate('reviews');
   res.json(campuses);
 });
 
