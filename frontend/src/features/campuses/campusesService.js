@@ -1,8 +1,10 @@
 import axios from 'axios';
 
+const API_ENDPOINT = import.meta.env.VITE_API_URL;
+
 // Get campuses
 const getCampuses = async () => {
-  const response = await axios.get('/api/campuses');
+  const response = await axios.get(`${API_ENDPOINT}/api/campuses`);
   return response.data;
 };
 
@@ -14,7 +16,11 @@ const createCampus = async (campusData, token) => {
       'Content-Type': 'multipart/form-data',
     },
   };
-  const response = await axios.post('/api/campuses', campusData, config);
+  const response = await axios.post(
+    `${API_ENDPOINT}/api/campuses`,
+    campusData,
+    config
+  );
   return response.data;
 };
 

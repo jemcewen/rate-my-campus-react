@@ -1,8 +1,12 @@
 import axios from 'axios';
 
+const API_ENDPOINT = import.meta.env.VITE_API_URL;
+
 // Get campus reviews
 const getReviews = async (id) => {
-  const response = await axios.get(`/api/campuses/${id}/reviews`);
+  const response = await axios.get(
+    `${API_ENDPOINT}/api/campuses/${id}/reviews`
+  );
   return response.data;
 };
 
@@ -15,7 +19,7 @@ const createReview = async (reviewData, campus, token) => {
   };
 
   const response = await axios.post(
-    `/api/campuses/${campus}/reviews`,
+    `${API_ENDPOINT}/api/campuses/${campus}/reviews`,
     reviewData,
     config
   );
