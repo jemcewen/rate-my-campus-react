@@ -1,8 +1,13 @@
 import axios from 'axios';
 
+const API_ENDPOINT = import.meta.env.VITE_API_URL;
+
 // Register user
 const register = async (userData) => {
-  const response = await axios.post('/api/users/register', userData);
+  const response = await axios.post(
+    `${API_ENDPOINT}/api/users/register`,
+    userData
+  );
   if (response.data) {
     localStorage.setItem('user', JSON.stringify(response.data));
   }
