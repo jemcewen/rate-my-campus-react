@@ -9,7 +9,7 @@ import Campus from './pages/Campus';
 
 const App = () => {
   return (
-    <div className='bg-gray-50 min-h-screen'>
+    <div className='bg-gray-100 min-h-screen'>
       <Toaster />
       <Router>
         <Nav />
