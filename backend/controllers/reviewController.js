@@ -31,6 +31,9 @@ const createReview = asyncHandler(async (req, res) => {
   const review = await new Review({ ...req.body });
   review.author = req.user._id;
   review.campus = campus.id;
+
+  campus.reviews.push(review);
+  await campus.save();
   await review.save();
   await review.populate('author');
   res.status(200).json(review);
