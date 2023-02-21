@@ -5,7 +5,7 @@ import { createCampus, reset } from '../features/campuses/campusesSlice';
 import toast from 'react-hot-toast';
 import Spinner from '../components/Spinner';
 
-const CampusForm = () => {
+const NewCampus = () => {
   const [formData, setFormData] = useState({
     name: '',
     location: '',
@@ -178,8 +178,9 @@ const CampusForm = () => {
             </div>
             <div className='flex flex-wrap h-full mt-4 '>
               {images &&
-                [...images].map((file) => (
+                [...images].map((file, index) => (
                   <img
+                    key={index}
                     src={URL.createObjectURL(file)}
                     className='h-[100px] mr-3 mb-3 opacity-80 rounded shadow'
                   />
@@ -199,4 +200,4 @@ const CampusForm = () => {
     </div>
   );
 };
-export default CampusForm;
+export default NewCampus;
