@@ -48,6 +48,12 @@ const campusSchema = new Schema(
       type: [ImageSchema],
       required: true,
     },
+    reviews: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: 'Review',
+      },
+    ],
   },
   {
     timestamps: true,
