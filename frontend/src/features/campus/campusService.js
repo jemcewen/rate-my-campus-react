@@ -8,8 +8,25 @@ const getCampus = async (id) => {
   return response.data;
 };
 
+// Create new review
+const createReview = async (reviewData, campus, token) => {
+  const config = {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  };
+
+  const response = await axios.post(
+    `${API_ENDPOINT}/api/campuses/${campus}/reviews`,
+    reviewData,
+    config
+  );
+  return response.data;
+};
+
 const campusService = {
   getCampus,
+  createReview,
 };
 
 export default campusService;
