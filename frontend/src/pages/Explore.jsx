@@ -32,7 +32,7 @@ const Explore = () => {
     <div className='flex flex-col gap-8 pb-20'>
       {campuses && <ClusterMap campuses={campuses} />}
       <div className='container'>
-        <h1 className='text-6xl pb-8'>Explore</h1>
+        <h1 class='text-4xl font-bold pb-8'>Campus Ratings</h1>
         <div className='grid grid-cols-1 gap-8 xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2'>
           {campuses.map((campus) => (
             <CampusCard campus={campus} key={campus._id} />
