@@ -1,5 +1,7 @@
 const express = require('express');
 const cors = require('cors');
+const path = require('path');
+const dotenv = require('dotenv').config();
 const port = process.env.PORT || 5000;
 const connectDatabase = require('./config/database');
 const errorHandler = require('./middleware/errorMiddleware');
@@ -19,6 +21,15 @@ app.use('/api/campuses/:id/reviews', reviewRoutes);
 
 app.use('/api/campuses', campusRoutes);
 app.use('/api/users', userRoutes);
+
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static(path.join(__dirname, '../frontend/build')));
+  app.get('*', (req, res) =>
+    res.sendFile(
+      path.resolve(__dirname, '../', 'frontend', 'build', 'index.html')
+    )
+  );
+}
 
 app.use(errorHandler);
 
