@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { createReview } from '../features/reviews/reviewsSlice';
+import { createReview } from '../features/campus/campusSlice';
 import toast from 'react-hot-toast';
 import StarRating from './StarRating';
 
@@ -11,13 +11,21 @@ const ReviewForm = () => {
   const dispatch = useDispatch();
 
   const user = useSelector((state) => state.auth.user);
-  const { reviewSubmit } = useSelector((state) => state.reviews);
+  const { reviewSubmit, reviewError, message } = useSelector(
+    (state) => state.campus
+  );
 
   useEffect(() => {
     if (reviewSubmit) {
       toast.success('Review added!');
     }
   }, [reviewSubmit]);
+
+  useEffect(() => {
+    if (reviewError) {
+      toast.error(message);
+    }
+  }, [reviewError]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
