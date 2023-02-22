@@ -20,7 +20,7 @@ const Campus = () => {
     (state) => state.campus
   );
 
-  const { reviews } = useSelector((state) => state.reviews);
+  const { name, location, description, geometry, reviews, images } = campus;
 
   const averageRating = () => {
     const sum = reviews.reduce((total, next) => total + next.rating, 0);
@@ -70,19 +70,16 @@ const Campus = () => {
               </Link>
             </div>
             <h1 className='my-3 sm:my-8 text-4xl md:text-6xl xl:text-7xl font-medium leading-tight'>
-              {campus.name}
+              {name}
             </h1>
             <div className='flex flex-wrap gap-8 sm:gap-0 '>
               <div className='w-full sm:mb-4 sm:w-3/4 sm:pr-8 order-2 sm:order-1  '>
                 <div className='shadow-lg rounded-2xl overflow-hidden bg-white h-full'>
                   <div className='py-6 px-4 h-full flex flex-col gap-4 justify-evenly'>
                     <p className='text-lg text-gray-500 font-medium '>
-                      {campus.location}
+                      {location}
                     </p>
-
-                    {campus.description && (
-                      <p className='leading-loose'>{campus.description}</p>
-                    )}
+                    <p className='leading-loose'>{description}</p>
                     <button
                       className='font-medium text-blue-500 text-left'
                       onClick={handleClick}
@@ -132,8 +129,8 @@ const Campus = () => {
           </div>
           <div className='flex flex-wrap gap-2 sm:gap-0'>
             <div className='w-full sm:w-1/2 sm:pr-4 '>
-              {campus.images.length > 0 ? (
-                <ImageSlider images={campus.images} />
+              {images.length > 0 ? (
+                <ImageSlider images={images} />
               ) : (
                 <div className='hidden sm:flex justify-center items-center w-full h-full bg-gray-300 rounded-2xl'>
                   <p className='text-3xl uppercase font-bold tracking-wider text-white'>
@@ -143,11 +140,11 @@ const Campus = () => {
               )}
             </div>
             <div className='w-full sm:w-1/2 sm:pl-4 pt-8 sm:pt-0'>
-              <CampusMap geometry={campus.geometry} />
+              <CampusMap geometry={geometry} />
             </div>
           </div>
           <div ref={reviewsRef}>
-            <ReviewList campus={params.campusId} />
+            <ReviewList reviews={reviews} />
           </div>
           <div className='sm:w-1/2 sm:pr-4'>
             <ReviewForm />
