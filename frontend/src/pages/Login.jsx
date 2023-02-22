@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
-import { FaSignInAlt } from 'react-icons/fa';
+import { Link, useNavigate } from 'react-router-dom';
 import toast from 'react-hot-toast';
 import { login, reset } from '../features/auth/authSlice';
 import Spinner from '../components/Spinner';
@@ -90,13 +89,22 @@ const Login = () => {
               className='shadow border rounded w-full py-2 px-3 text-gray-700 focus:outline-none'
             />
           </div>
-          <div className='flex justify-center'>
+          <div className='flex flex-col'>
             <button
               type='submit'
-              className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline'
+              className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline self-center '
             >
               Login
             </button>
+            <p className='self-center mt-3 text-sm text-gray-500'>
+              Not a member?{' '}
+              <Link
+                to='/register'
+                className='text-blue-600 font-semibold hover:underline'
+              >
+                Register now
+              </Link>
+            </p>
           </div>
         </form>
       </div>
