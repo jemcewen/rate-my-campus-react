@@ -11,7 +11,10 @@ const getCampuses = asyncHandler(async (req, res) => {
 });
 
 const getCampus = asyncHandler(async (req, res) => {
-  const campus = await Campus.findById(req.params.id);
+  const campus = await Campus.findById(req.params.id).populate({
+    path: 'reviews',
+    populate: 'author',
+  });
   if (!campus) {
     res.status(400);
     throw new Error('Campus not found');
