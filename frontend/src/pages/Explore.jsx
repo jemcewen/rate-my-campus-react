@@ -22,7 +22,11 @@ const Explore = () => {
   }, []);
 
   if (isLoading) {
-    return <Spinner />;
+    return (
+      <div className='flex items-center justify-center h-[calc(100vh-80px)] pb-20 overflow-auto'>
+        <Spinner />
+      </div>
+    );
   }
   return (
     <div className='flex flex-col gap-8 pb-20'>

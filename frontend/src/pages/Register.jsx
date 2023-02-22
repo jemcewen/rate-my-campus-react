@@ -48,9 +48,12 @@ const Register = () => {
   };
 
   if (isLoading) {
-    return <Spinner />;
+    return (
+      <div className='flex items-center justify-center h-[calc(100vh-80px)] pb-20 overflow-auto'>
+        <Spinner />
+      </div>
+    );
   }
-
   return (
     <div className='container max-w-sm flex flex-col pb-20 min-h-[calc(100vh-80px)] justify-center'>
       <div className='bg-white shadow-md rounded-2xl p-8 flex flex-col gap-8'>
